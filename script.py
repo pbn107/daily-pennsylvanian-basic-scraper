@@ -24,7 +24,8 @@ def scrape_data_points():
     Returns:
         str: The headline text if found, otherwise an empty string.
     """
-    podcast_url = "https://www.thedp.com/page/opinion-podcast"
+   
+    podcast_url = "https://www.thedp.com/section/podcasts"
     req = requests.get(podcast_url, headers=headers)
     loguru.logger.info(f"Request URL: {req.url}")
     loguru.logger.info(f"Request status code: {req.status_code}")

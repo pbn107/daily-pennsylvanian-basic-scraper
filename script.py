@@ -17,23 +17,35 @@ headers = {
     "User-Agent":"cis3500-scraper"
 }
 
-def scrape_data_point():
+def scrape_data_points():
     """
     Scrapes the main headline from The Daily Pennsylvanian home page.
 
     Returns:
         str: The headline text if found, otherwise an empty string.
     """
-    req = requests.get("https://www.thedp.com", headers=headers)
+    podcast_url = "https://www.thedp.com/page/opinion-podcast"
+    req = requests.get(podcast_url, headers=headers)
     loguru.logger.info(f"Request URL: {req.url}")
     loguru.logger.info(f"Request status code: {req.status_code}")
 
+    data_points = []
+
     if req.ok:
         soup = bs4.BeautifulSoup(req.text, "html.parser")
-        target_element = soup.find("a", class_="frontpage-link")
-        data_point = "" if target_element is None else target_element.text
-        loguru.logger.info(f"Data point: {data_point}")
-        return data_point
+        target_elements = soup.find_all("a", class_="small-link subsection-link podcast-link")
+
+        if target_elements:
+            for element in target_elements:
+                link_data = {
+                    "text": element.text,
+                    "url": element.get("href")
+                }
+                data_points.append(link_data)
+                loguru.logger.info(f"Found podcast link: {link_data}")
+        else:
+            loguru.logger.info("No podcast links found")                          
+        return data_points
 
 
 if __name__ == "__main__":
@@ -58,7 +70,7 @@ if __name__ == "__main__":
     # Run scrape
     loguru.logger.info("Starting scrape")
     try:
-        data_point = scrape_data_point()
+        data_point = scrape_data_points()
     except Exception as e:
         loguru.logger.error(f"Failed to scrape data point: {e}")
         data_point = None

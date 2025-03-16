@@ -1,3 +1,8 @@
+# Changes made to the Scraper
+
+I changed the scraper to extract the daily Pennsylvania podcast headlines. The motivation behind this modification is that the podcast headlines often reflect trending topics and discussions. By analyzing these headlines, one can gain insights into current events, popular opinions, and emerging trends within the region.
+
+
 # Basic Git Scraper Template
 
 This template provides a starting point for **git scraping**—the technique of scraping data from websites and automatically committing it to a Git repository using workflows, [coined by Simon Willison](https://simonwillison.net/2020/Oct/9/git-scraping/).

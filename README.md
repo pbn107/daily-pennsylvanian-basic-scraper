@@ -2,6 +2,10 @@
 
 I changed the scraper to extract the daily Pennsylvania podcast headlines. The motivation behind this modification is that the podcast headlines often reflect trending topics and discussions. By analyzing these headlines, one can gain insights into current events, popular opinions, and emerging trends within the region.
 
+I modified the scheduler to make the scapre run twice a day at 5am and at 8pm.
+
+"0 5,20 * * *" means the scraper will run at 05:00 and at 2000 every day of each month and every month and everyday of the week.
+
 
 # Basic Git Scraper Template
 
